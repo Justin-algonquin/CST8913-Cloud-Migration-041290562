@@ -35,7 +35,12 @@ git version 2.55.0.windows.5
    - git add
 ### Links
 [GitHub](https://github.com)
-### Image
+### Image 
+![git version displayed in VS Code](images/vs_code.png)
+### Blokequote
+> Git helps developers track changes in a projet.
+### Inline Code 
+`Git status` helps us know the status of our files
 ## Challenges and solutions
 ## Learning Reflection
 ## References
