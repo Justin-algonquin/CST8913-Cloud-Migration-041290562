@@ -35,12 +35,32 @@ git version 2.55.0.windows.5
    - git add
 ### Links
 [GitHub](https://github.com)
+[Git Documentation](https://git-scm.com/doc)
 ### Image 
 ![git version displayed in VS Code](images/vs_code.png)
 ### Blokequote
 > Git helps developers track changes in a projet.
 ### Inline Code 
 `Git status` helps us know the status of our files
+### Fenced code block
+```bash
+git status
+git add
+git commit -m "add Markdown examples"
+```
+### Table
+| Command | Purpose | Example |
+| --- | --- | --- |
+| `git status` | Shows the status of the working tree. | `git status` |
+| `git --version` | Shows the installed Git version. | `git --version` |
+| `git branch` | Displays all the branches. | `git branch` |
+### Task list
+- [x] Repository created
+- [x] Branch created
+- [ ] pull requested merged
+### Horizontal Rule
+---
 ## Challenges and solutions
+One challenge I had was Markdown syntax. It is something that I still struggle with. I solved this by practicing again and again.
 ## Learning Reflection
 ## References
