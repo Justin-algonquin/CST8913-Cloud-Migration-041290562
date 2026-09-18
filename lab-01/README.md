@@ -3,8 +3,8 @@
 **Full Name:** Justin AROGA
 **Student Number:** 041290562
 ## Introduction
-**Git:** Is a tool that allow us to record and track changes in a project.
-**GitHub:** Is an online that allow us to store our repositories.
+**Git:** Is a tool that allows us to record and track changes in a project.
+**GitHub:** Is an online tool that allow us to store our repositories.
 **Markdown:** Is a language that allows us to format and organise text. 
 ## Git Version
 git version 2.55.0.windows.5
@@ -17,10 +17,10 @@ git version 2.55.0.windows.5
 6. I used git commit to record my changes.
 ## Markdown Demonstration
 ### Headings
-### Text formating
+### Text formatting
 **Git is a version control tool**
 *GitHub stores repositories online*
-***git is a version control tool***
+*** Git is a version control tool***
 ~~Git stores repositories online~~
 ### Lists
 1. Git
@@ -57,10 +57,13 @@ git commit -m "add Markdown examples"
 ### Task list
 - [x] Repository created
 - [x] Branch created
-- [ ] pull requested merged
+- [ ] pull request merged
 ### Horizontal Rule
 ---
 ## Challenges and solutions
 One challenge I had was Markdown syntax. It is something that I still struggle with. I solved this by practicing again and again.
 ## Learning Reflection
+The first thing that I learned was how to use Git, GitHub, and VS Code again because I used them a long time ago. I learned more about branches, commits, and Markdown. At the beginning, I think Markdown was the most difficult because of the syntax. I still need to practice the different Markdown syntaxes to become more comfortable with them. I am sure that this lab will help me because it shows me a lot of fundamental tools. I think I will use Git, GitHub, and VS Code the most because all of them are important for this program. After completing this lab, I feel a little more confident using Git and GitHub. That is why I have to keep practicing.
 ## References
+[GitHub](https://github.com)
+[Git Documentation](https://git-scm.com/doc)
