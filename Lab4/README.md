@@ -39,7 +39,16 @@ graph LR
   To recommend appropriate Azure VM sizes, I would collect the number of CPU cores, memory, disk size and type, storage usage, network usage, and CPU and memory utilization over time.
 - Factors affecting Azure operating cost:
   Three factors that could affect the estimated Azure operating cost are the selected VM size, storage requirements, and the Azure region where the resources are deployed.
-- Lab 4 — Cloud Migration Discove…Azure VM sizing cost can not be estimated reliably because CPU, memory,storage and utilization details are missing
+- Azure VM sizing cost can not be estimated reliably because CPU, memory,storage and utilization details are missing
 
 ## 6. Migration prioritization and plan
-Migration groups and sequencing are not finilized due to missing dependecie and performance data
+- Preparation:
+Before the migration, we need to check the dependencies, compatibility, and make backups.
+- First workload or pilot:
+I would first test a non-production workload with low risk. This will help us test the migration without affecting production.
+- Migration order:
+APP-01 and DB-01 should be migrated together because APP-01 depends on DB-01. DB-01 is mission-critical, so we need to minimize downtime.
+- Validation:
+After the migration, we need to test the applications, database connections, authentication, and user access.
+- Rollback:
+If an important service does not work after migration, we should stop and return to the previous on-premises system.
