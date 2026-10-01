@@ -20,3 +20,12 @@ graph LR
     WEB01[WEB-01] --> APP01[APP-01]
     APP01[APP-01] --> DB01[DB-01]
 ```
+
+## 4. Azure readiness and suitability
+| Server | Readiness Category | Justification and Missing Information | Remediation or Next Step |
+|---|---|---|---|
+| WEB-01 | Insufficient Information | Windows Server 2019 and IIS are identified, but CPU, memory, storage, utilization, application versions, and detailed dependencies are missing. | Use Azure Migrate assessment to collect performance and dependency information. |
+| APP-01 | Insufficient Information | Windows Server 2016 is identified and the dependency on DB-01 is confirmed, but application requirements and performance data are missing. | Assess application compatibility, performance, and the dependency on DB-01. |
+| DB-01 | Insufficient Information | The server is mission-critical, but the SQL Server version, configuration, performance, and storage requirements are unknown. | Confirm the SQL Server version and collect database performance and storage information. |
+| DC-01 | Insufficient Information | Windows Server 2019 and the identity role are known, but Active Directory configuration and dependencies are not provided. | Review Active Directory configuration and identify services that depend on DC-01. |
+| FILE-01 | Conditionally Ready | Windows Server 2012 R2 is a legacy operating system. Migration may be possible, but compatibility and support requirements must be checked. | Assess compatibility and determine whether an operating system upgrade is required. |
