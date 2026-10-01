@@ -32,3 +32,6 @@ graph LR
 
 ## 5. Sizing and cost considerations
 Azure VM sizing cost can not be estimated reliably because CPU, memory,storage and utilization details are missing
+
+## 6. Migration prioritization and plan
+Migration groups and sequencing are not finilized due to missing dependecie and performance data
