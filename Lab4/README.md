@@ -29,3 +29,6 @@ graph LR
 | DB-01 | Insufficient Information | The server is mission-critical, but the SQL Server version, configuration, performance, and storage requirements are unknown. | Confirm the SQL Server version and collect database performance and storage information. |
 | DC-01 | Insufficient Information | Windows Server 2019 and the identity role are known, but Active Directory configuration and dependencies are not provided. | Review Active Directory configuration and identify services that depend on DC-01. |
 | FILE-01 | Conditionally Ready | Windows Server 2012 R2 is a legacy operating system. Migration may be possible, but compatibility and support requirements must be checked. | Assess compatibility and determine whether an operating system upgrade is required. |
+
+## 5. Sizing and cost considerations
+Azure VM sizing cost can not be estimated reliably because CPU, memory,storage and utilization details are missing
