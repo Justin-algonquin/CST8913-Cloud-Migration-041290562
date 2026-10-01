@@ -31,7 +31,15 @@ graph LR
 | FILE-01 | Conditionally Ready | Windows Server 2012 R2 is a legacy operating system. Migration may be possible, but compatibility and support requirements must be checked. | Assess compatibility and determine whether an operating system upgrade is required. |
 
 ## 5. Sizing and cost considerations
-Azure VM sizing cost can not be estimated reliably because CPU, memory,storage and utilization details are missing
+- Azure Migrate sizing and cost estimation:
+  Azure Migrate collects configuration and performance data from the on-premises VMware environment. It uses this information to recommend suitable Azure VM sizes and estimate the cost of running the workloads in Azure.
+- Performance-based sizing vs. As-is sizing:
+  Performance-based sizing uses actual resource utilization, such as CPU and memory usage, to recommend an appropriate Azure VM size. As-is sizing recommends a VM based on the current on-premises configuration without considering actual utilization.
+- Configuration and utilization data needed:
+  To recommend appropriate Azure VM sizes, I would collect the number of CPU cores, memory, disk size and type, storage usage, network usage, and CPU and memory utilization over time.
+- Factors affecting Azure operating cost:
+  Three factors that could affect the estimated Azure operating cost are the selected VM size, storage requirements, and the Azure region where the resources are deployed.
+- Lab 4 — Cloud Migration Discove…Azure VM sizing cost can not be estimated reliably because CPU, memory,storage and utilization details are missing
 
 ## 6. Migration prioritization and plan
 Migration groups and sequencing are not finilized due to missing dependecie and performance data
