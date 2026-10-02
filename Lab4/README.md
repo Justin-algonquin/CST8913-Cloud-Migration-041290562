@@ -17,8 +17,8 @@ Azure Migrate dependency analysis can help validate the communication between se
 A possible migration group is WEB-01, APP-01 and DB-01 because they may work together.
 ```mermaid
 graph LR
-    WEB01[WEB-01] --> APP01[APP-01]
-    APP01[APP-01] --> DB01[DB-01]
+    WEB01[WEB-01] --> |Assumed| APP01[APP-01]
+    APP01[APP-01] --> |Confirmed| DB01[DB-01]
 ```
 
 ## 4. Azure readiness and suitability
