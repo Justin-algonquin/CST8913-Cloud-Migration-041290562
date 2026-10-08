@@ -1,138 +1,140 @@
-Lab 5 – Rehosting to Microsoft Azure
+# Lab 5 – Rehosting to Microsoft Azure
 
-Course: Cloud Migration (CST8913)
-Case Study: Washington State Department of Labor & Industries (L&I)
+**Course:** Cloud Migration (CST8913)  
+**Case Study:** Washington State Department of Labor & Industries (L&I)
 
-1. Business Drivers and Migration Strategy
+## 1. Business Drivers and Migration Strategy
 
-The Washington State Department of Labor & Industries had an old IT environment that had developed over approximately 45 years. The organization had more than 400 servers and over 200 applications and systems.
+The Washington State Department of Labor & Industries had an aging IT environment developed over approximately 45 years. The organization had more than 400 servers and over 200 applications and systems.
 
 Two important reasons for moving to Azure were:
 
-First, modernizing the IT infrastructure. The old on-premises environment was becoming difficult to maintain and improve. The organization wanted a more modern and stable infrastructure while continuing to provide important public services.
+**First, infrastructure modernization.** The existing on-premises systems were becoming difficult to maintain. The organization needed a more stable and modern environment while keeping important public services available.
 
-Second, reducing costs and improving financial planning. Moving to Azure helped the organization reduce operational costs and better predict its future IT expenses. This was important because the agency needed to manage its budget carefully.
+**Second, cost management.** L&I wanted to reduce operational expenses and make its IT costs more predictable. Moving to Azure provided an opportunity to improve efficiency and long-term financial planning.
 
-Why Rehosting?
+### Why Rehosting?
 
-Rehosting was a good choice because L&I was already using VMware. With Azure VMware Solution (AVS), the organization could move its existing virtual machines to Azure without making major changes to the applications.
+Rehosting was appropriate because L&I already used VMware. Azure VMware Solution (AVS) allowed the organization to migrate its existing virtual machines without significantly modifying the applications.
 
-This approach helped reduce migration risks and avoid long interruptions to business operations.
+This approach reduced migration complexity and helped maintain business continuity.
 
-Rehosting vs. Replatforming:
+**Rehosting** means moving existing workloads to the cloud with minimal changes.
 
-Rehosting: Move an application to the cloud with little or no modification.
+**Replatforming** means making selected platform changes during migration, such as moving a database from a virtual machine to a managed cloud database service.
 
-Replatforming: Move an application to the cloud while changing some parts of its platform, such as moving a database to a managed Azure database service.
+Rehosting was a practical first step because L&I could move its workloads first and modernize applications afterward.
 
-For L&I, rehosting was a practical first step. The organization could migrate quickly and continue modernizing its applications afterward.
+## 2. Architecture Diagram
 
-2. Architecture Diagram
+The diagram below illustrates a proposed migration architecture. It separates application workloads, database workloads, and network services to make their dependencies easier to understand.
 
-The following diagram shows a proposed high-level architecture for migrating an on-premises VMware environment to Azure VMware Solution.
-
-flowchart TB
-    subgraph ONPREM["SOURCE: On-Premises Data Center"]
+```mermaid
+flowchart LR
+    subgraph SOURCE["SOURCE: On-Premises VMware"]
         direction TB
-        A["VMware Environment"]
+        A["VMware Infrastructure"]
         B["Application VMs"]
         C["Database VMs"]
-        D["Network and Shared Services"]
+        D["Network Services"]
         A --> B
         A --> C
         A --> D
+        B <-->|"Data requests"| C
     end
 
-    subgraph AZURE["DESTINATION: Microsoft Azure"]
+    subgraph TARGET["DESTINATION: Microsoft Azure"]
         direction TB
         E["Azure VMware Solution (AVS)"]
         F["Migrated Application VMs"]
         G["Migrated Database VMs"]
-        H["Migrated Network and Shared Services"]
+        H["Migrated Network Services"]
         E --> F
         E --> G
         E --> H
-        F <-->|"Application and data requests"| G
+        F <-->|"Data requests"| G
     end
 
-    D <-->|"Private connectivity - assumed"| E
-    B -.->|"Migration Wave 1, 2, 3..."| F
-    C -.->|"Migrate with dependent applications"| G
+    D <-->|"Private connectivity (ASSUMED)"| E
+    B -.->|"Phased migration"| F
+    C -.->|"Dependency-based migration"| G
+```
 
-Explanation and Assumptions
+### Architecture Explanation
 
-The source environment is the organization's existing VMware infrastructure in its on-premises data center.
+The source environment represents the organization's existing on-premises VMware infrastructure.
 
-The destination is Azure VMware Solution, where the migrated virtual machines continue running in a VMware-based environment.
+The destination environment is Azure VMware Solution, where the migrated workloads continue running in a VMware-based environment.
 
-The diagram separates application and database workloads to show their dependencies. Applications may need databases to work correctly, so related systems should be considered together during migration.
+The application and database VMs are represented separately to highlight the importance of workload dependencies. Related workloads should be migrated together or maintain reliable communication during the transition.
 
-Assumptions:
+### Assumptions
 
-The diagram shows application and database VMs separately for clarity. The case study does not identify the exact application and database architecture.
+- **Assumption 1:** Application and database VMs are represented as separate groups. The case study does not provide the exact architecture of these workloads.
+- **Assumption 2:** Private connectivity is used between the on-premises environment and Azure. The article does not identify the specific connection technology.
+- **Assumption 3:** Applications communicate with database servers. These connections illustrate possible dependencies rather than a confirmed L&I architecture.
+- **Assumption 4:** Network services are shown in both environments to illustrate the transition. Their exact deployment arrangement is not specified in the case study.
 
-Private connectivity between the data center and Azure is assumed. The article does not specify whether ExpressRoute, VPN, or another connection was used.
+## 3. Migration and Validation Plan
 
-The application-to-database connection represents a possible dependency, not a confirmed design of L&I's systems.
+I would migrate the workloads in several controlled waves rather than moving all virtual machines at once.
 
-The article confirms that L&I migrated collections of servers, networks, data, and applications in planned segments.
+### Phase 1: Inventory and Dependency Analysis
 
-3. Migration and Validation Plan
+First, I would identify all virtual machines, applications, databases, and network services.
 
-I would use a phased migration plan to reduce risk and keep business services available.
+I would create dependency groups so that applications and their required databases are migrated together when possible.
 
-Step 1: Identify Workloads and Dependencies
+For example, if an employee application depends on a database, I would include both workloads in the same migration group or verify that communication between them remains available.
 
-Before starting the migration, I would create an inventory of virtual machines, applications, databases, and network services.
+### Phase 2: Pilot Migration
 
-I would also identify dependencies between them. For example, if an application needs a specific database, both systems should be included in the same migration group or connected through a tested network path.
+I would begin with a small pilot wave of approximately 10 low-risk virtual machines.
 
-This would help avoid situations where an application is moved but cannot communicate with its database.
+This follows the approach described in the case study and allows the migration team to identify technical problems before migrating more important workloads.
 
-Step 2: Start with a Small Migration Wave
+### Phase 3: Validation
 
-I would begin with approximately 10 low-risk virtual machines, following the approach described in the case study.
+After the pilot migration, I would verify:
 
-The goal of this first wave would be to confirm that the migration process works correctly before moving more important workloads.
+- Virtual machines start successfully.
+- Applications can communicate with their databases.
+- Network connectivity works correctly.
+- Users can access the migrated applications.
+- Performance and business functions meet the expected requirements.
 
-After the first successful wave, I would gradually increase the size of the migration groups. The case study reports that L&I later migrated approximately 75 VMs per wave.
+The results would be compared with the original on-premises environment.
 
-Step 3: Test and Validate
+### Phase 4: Additional Migration Waves
 
-After each migration wave, I would check:
+If the pilot is successful, I would continue with larger migration waves.
 
-Whether all migrated VMs start correctly.
+The case study reports that L&I later migrated approximately 75 virtual machines per wave.
 
-Whether applications can connect to their databases.
+Each wave would group dependent workloads and include validation before proceeding to the next group.
 
-Whether network communication works.
+### Phase 5: Proceed or Roll Back
 
-Whether users can access the applications.
+**Proceed:** Continue to the next migration wave when application functionality, database connectivity, network access, and performance tests are successful.
 
-Whether application performance and important business functions remain acceptable.
+**Rollback:** Stop the migration and restore the previous working environment if a critical application fails, important data becomes inconsistent, or business operations are interrupted.
 
-I would compare these results with the tests completed before migration.
+The team should investigate the problem, correct it, and repeat the tests before attempting the migration again.
 
-Step 4: Proceed or Roll Back
+### Phase 6: Post-Migration Monitoring
 
-Proceed: If the virtual machines, application connections, and business functions pass validation, I would approve the next migration wave.
+After completing the migration, I would monitor application performance, network connectivity, availability, and cloud costs.
 
-Rollback: If a critical application fails, data is inconsistent, or important users cannot access a service, I would stop the migration and return the affected workload to its previous working environment using a tested recovery plan.
+Once the environment is stable, L&I could gradually replatform or refactor selected applications to take greater advantage of Azure services.
 
-I would investigate and correct the problem before trying again.
+## Conclusion
 
-Step 5: Complete the Migration
+The Washington State Department of Labor & Industries case study demonstrates how rehosting can support a large VMware migration while maintaining business continuity.
 
-After all migration waves are validated, I would confirm that the applications are stable and that the organization can continue its normal operations.
+A phased migration approach, dependency analysis, validation testing, and a rollback strategy help reduce risk and make the transition more manageable.
 
-I would keep monitoring performance, security, and costs. Once the migrated environment is stable, the organization could begin replatforming or refactoring selected applications to use more Azure cloud services.
+## Reference
 
-Conclusion
-
-The L&I case study shows that rehosting can be a practical way to move a large VMware environment to the cloud. By migrating related workloads in phases, testing each wave, and preparing a rollback plan, an organization can reduce migration risks while keeping important services running.
-
-Reference
-
-Microsoft. (2024, August 1). Washington State Department of Labor & Industries drives cultural shift and achieves measurable cost savings with Microsoft Azure.
+Microsoft. (2024, August 1). *Washington State Department of Labor & Industries drives cultural shift and achieves measurable cost savings with Microsoft Azure.*
 
 https://www.microsoft.com/en/customers/story/1797135170129986863-lni-azure-vmware-solution-national-government-en-united-states
